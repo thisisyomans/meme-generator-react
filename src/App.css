@@ -1,0 +1,132 @@
+#root {
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
+  color: #444;
+  background: #fff;
+  height: 100vh;
+}
+
+.container-home {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1000px;
+}
+
+.inner-home {
+  width: 100vw;
+  padding-top: 8rem;
+}
+
+.container-generator {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  height: 100vh;
+}
+
+.container-meme {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* home */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+}
+
+.goto {
+  margin-left: 0;
+}
+
+.goto button {
+  min-width: 10vw;
+  min-height: 7vh;
+  transform: skewX(20deg);  
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.goto button p {
+  transform: skewX(-20deg);
+}
+
+/* nav */
+
+.active-link {
+  text-decoration: underline;
+}
+
+.navIcon {
+  position: relative;
+}
+
+.navIcon button {
+  position: fixed;
+  left: 3vw;
+  top: 4vh;
+  z-index: 10;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.navDefault {
+  overflow-y: scroll;
+  list-style: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #444;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  max-width: 30vw;
+  z-index: 9;
+}
+
+
+.navDefault.navOpen {
+  width: 100vw;
+}
+
+a {
+  display: block;
+  margin-left: 3.5vw;
+  padding-top: 3vh;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  outline: none;
+}
+
+.navDefault li:first-child {
+  margin-top: 12vh;
+}
+
+/* meme */
