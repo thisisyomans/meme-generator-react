@@ -36,14 +36,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 100vw;
+  width: 100vw;
   height: 100vh;
 }
 
 .container-meme {
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -130,3 +130,33 @@ a {
 }
 
 /* meme */
+
+.meme-form {
+  margin-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meme-form > *:not(:first-child) {
+  margin-top: 3vh;
+}
+
+.meme-form > input {
+  width: 15vw;
+}
+
+.meme-form > button {
+  width: fit-content;
+  padding-left: 0.4vw;
+  padding-right: 0.4vw;
+}
+
+svg > text {
+  fill: #fff;
+  font-size: 2em;
+  font-family: Impact;
+  text-transform: uppercase;
+  stroke: #000;
+  user-select: none;
+}
