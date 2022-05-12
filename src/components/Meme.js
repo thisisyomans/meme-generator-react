@@ -119,7 +119,7 @@ function Meme({ imgs }) {
     setImgDisplay({ width: newWidth, height: newHeight });
   }
 
-  const downloadMeme = function() {
+  /*const downloadMeme = function() {
     const svg = document.getElementById("main_svg");
     //console.log(document.getElementById("main_svg"));
     let svgData = new XMLSerializer().serializeToString(svg);
@@ -141,6 +141,19 @@ function Meme({ imgs }) {
       a.click();
     };
     //img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
+  }*/
+
+  const downloadMeme = function() {
+    const svg = document.getElementById("main_svg");
+    let svgData = new XMLSerializer().serializeToString(svg);
+    svgData = '<?xml version="1.0" standalone="no"?>\r\n' + svgData;
+    const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData);
+    const a = document.createElement("a");
+    a.download = "meme.svg";
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   const generateMeme = function() {
@@ -171,7 +184,8 @@ function Meme({ imgs }) {
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
       >
-        <image 
+        <image
+          style={{ zIndex: -1000 }} 
           ref={el => { setImgRef(el) }}
           width={imgDisplay.width}
           height={imgDisplay.height}
@@ -181,7 +195,7 @@ function Meme({ imgs }) {
           <text
             key={index}
             style={{ 
-              zIndex: moveStateIdx == index ? 0 : index + 1 
+              zIndex: moveStateIdx == index ? 1000 : index 
             }}
             x={obj.x}
             y={obj.y}
