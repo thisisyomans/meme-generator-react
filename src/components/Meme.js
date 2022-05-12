@@ -1,28 +1,26 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 function Meme({ imgs }) {
-  //console.log(imgs.length);
   const[effectTrigger, setEffectTrigger] = useState(true);
-  //const[topText, setTopText] = useState("");
-  //const[bottomText, setBottomText] = useState("");
   const[textContents, setTextContents] = useState([]);  
 
   const[currImg, setCurrImg] = useState(null);
-  const[currImgBase64, setCurrImgBase64] = useState("");
+  //const[currImgBase64, setCurrImgBase64] = useState("");
   const[imgDisplay, setImgDisplay] = useState({});
   
   const[imgRef, setImgRef] = useState("");
-  //const[svgRef, setSvgRef] = useState("");
   const[moveStateIdx, setMoveStateIdx] = useState(-1);
 
   const addInput = function() {
-    const newInput = {
-      content: "",
-      x: `50%`,
-      y: `${textContents.length * 5 + 10}%`
-    };
-    setTextContents(prevTextContents => [...prevTextContents, newInput]);
-    console.log(textContents.length);
+    if (textContents.length < 10) {
+      const newInput = {
+        content: "",
+        x: `50%`,
+        y: `${textContents.length * 5 + 10}%`
+      };
+      setTextContents(prevTextContents => [...prevTextContents, newInput]);
+      console.log(textContents.length);
+    }
   }
 
   const updateText = function(index, newText) {
@@ -64,7 +62,6 @@ function Meme({ imgs }) {
   }
 
   const handleMouseMove = useCallback((e) => {
-    //Object.keys(moveStateObj).length == 0;
     if (moveStateIdx > -1) {
       const stateObj = getStateObj(e, moveStateIdx);
       updateCoords(moveStateIdx, stateObj.x, stateObj.y);
@@ -84,7 +81,7 @@ function Meme({ imgs }) {
   }
 
   // this shit still don't work so I'm just gonna use the regular url and come back to this
-  const getBase64Image = function(img) {
+  /*const getBase64Image = function(img) {
     const baseImage = new Image();
     baseImage.crossOrigin = "anonymous";
     baseImage.src = img.url;
@@ -100,14 +97,14 @@ function Meme({ imgs }) {
     console.log(context);
     const dataURL = canvas.toDataURL("image/png");
     return dataURL;
-  }
+  }*/
 
-  const setCurrImgBase64Wrapper = function(img) {
+  /*const setCurrImgBase64Wrapper = function(img) {
     const base64 = getBase64Image(img); //.replace(/^data:image\/(png|jpg);base64,/, "");
     if (currImgBase64 !== base64) {
       setCurrImgBase64(base64);
     }
-  }
+  }*/
 
   const setImgDisplayWrapper = function(defaultWidth, defaultHeight) {
     let newWidth = 400;
@@ -118,30 +115,6 @@ function Meme({ imgs }) {
     }
     setImgDisplay({ width: newWidth, height: newHeight });
   }
-
-  /*const downloadMeme = function() {
-    const svg = document.getElementById("main_svg");
-    //console.log(document.getElementById("main_svg"));
-    let svgData = new XMLSerializer().serializeToString(svg);
-    console.log(svgData);
-    const canvas = document.createElement("canvas");
-    canvas.setAttribute("id", "canvas");
-    const svgSize = svg.getBoundingClientRect();
-    canvas.width = svgSize.width;
-    canvas.height = svgSize.height;
-    const img = document.createElement("img");
-    img.setAttribute("src", "data:image/svg+xml;base64," + btoa(decodeURIComponent(encodeURIComponent(svgData))));
-    img.onload = function() {
-      canvas.getContext("2d").drawImage(img, 0, 0);
-      const canvasData = canvas.toDataURL("image/jpg");
-      const a = document.createElement("a");
-      a.download = "meme.jpg";
-      a.href = canvasData;
-      document.body.appendChild(a);
-      a.click();
-    };
-    //img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
-  }*/
 
   const downloadMeme = function() {
     const svg = document.getElementById("main_svg");
@@ -161,11 +134,10 @@ function Meme({ imgs }) {
     const randImg = imgs[randNum];
     setTextContents([]);
     setImgDisplayWrapper(randImg.width, randImg.height);
-    setCurrImgBase64Wrapper(randImg);
+    //setCurrImgBase64Wrapper(randImg);
     setCurrImg(randImg);
   }
 
-  // runs only the first render
   useEffect(() => {
     generateMeme();
     console.log("meme mounted");
@@ -194,7 +166,13 @@ function Meme({ imgs }) {
         { textContents.map((obj, index) => (
           <text
             key={index}
-            style={{ 
+            style={{
+              fill: "#fff", 
+              fontSize: "2em",
+              fontFamily: "Impact",
+              textTransform: "uppercase",
+              stroke: "#000",
+              userSelect: "none",
               zIndex: moveStateIdx == index ? 1000 : index 
             }}
             x={obj.x}

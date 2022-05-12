@@ -11,7 +11,7 @@
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.5;
-  color: #444;
+  color: #777;
   background: #fff;
   height: 100vh;
 }
@@ -71,6 +71,14 @@ header {
 
 .goto button p {
   transform: skewX(-20deg);
+}
+
+.goto button:active {
+  transform: scale(0.95);
+}
+
+.goto button:active p {
+  transform: skewX(0deg);
 }
 
 /* nav */
@@ -146,17 +154,30 @@ a {
   width: 15vw;
 }
 
-.meme-form > button {
+button {
   width: fit-content;
-  padding-left: 0.4vw;
-  padding-right: 0.4vw;
+  /*padding-left: 0.35vw;
+  padding-right: 0.35vw;*/
+  padding: 1vh 0.75vw;
+  color: #fff;
+  background-color: #777;
+  border: 0px;
+  text-transform: uppercase;
 }
 
-svg > text {
+button:hover {
+  cursor: pointer;
+}
+
+.meme-form button:active {
+  transform: scale(0.95);
+}
+
+/*svg > text {
   fill: #fff;
   font-size: 2em;
   font-family: Impact;
   text-transform: uppercase;
   stroke: #000;
   user-select: none;
-}
+}*/
