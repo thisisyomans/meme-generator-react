@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 
@@ -30,8 +30,24 @@ function Nav() {
     setNavState(false);
   }
 
+  const openNav = function() {
+    setNavState(true);
+  }
+
+  useEffect(() => {
+    if (navState) {
+      let home = document.querySelectorAll(".container-home,.container-generator");
+      home[0].style.filter = "blur(5px)";
+      home[0].style.pointerEvents = "none";
+    } else {
+      let home = document.querySelectorAll(".container-home,.container-generator");
+      home[0].style.filter = "none";
+      home[0].style.removeProperty("pointer-events");
+    }
+  }, [navState]);
+
   return(
-    <nav className="navIcon">
+    <nav className="navIcon" onBlur={() => closeNav()} onFocus={() => openNav()}>
       <button onClick={() => navToggle()}>
         {
           navState ? 

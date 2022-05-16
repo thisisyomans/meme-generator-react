@@ -12,7 +12,7 @@ function Meme({ imgs }) {
   const[moveStateIdx, setMoveStateIdx] = useState(-1);
 
   const addInput = function() {
-    if (textContents.length < 10) {
+    if (textContents.length < 7) {
       const newInput = {
         content: "",
         x: `50%`,
@@ -132,13 +132,18 @@ function Meme({ imgs }) {
   const generateMeme = function() {
     const randNum = Math.floor(Math.random() * imgs.length);
     const randImg = imgs[randNum];
-    setTextContents([]);
+    setTextContents([{
+      content: "",
+      x: `50%`,
+      y: `10%`
+    }]);
     setImgDisplayWrapper(randImg.width, randImg.height);
     //setCurrImgBase64Wrapper(randImg);
     setCurrImg(randImg);
   }
 
   useEffect(() => {
+    //addInput();
     generateMeme();
     console.log("meme mounted");
     return() => {
@@ -168,7 +173,7 @@ function Meme({ imgs }) {
             key={index}
             style={{
               fill: "#fff", 
-              fontSize: "2em",
+              fontSize: "1.75em",
               fontFamily: "Impact",
               textTransform: "uppercase",
               stroke: "#000",
@@ -200,7 +205,7 @@ function Meme({ imgs }) {
         )) }
         <button onClick={() => addInput()}>+</button>
         <button onClick={() => downloadMeme()}>Download</button>
-        <button onClick={() => setEffectTrigger(!effectTrigger)}>New</button>
+        <button onClick={() => setEffectTrigger(!effectTrigger)}>New Image</button>
       </div>
     </div>
   );
