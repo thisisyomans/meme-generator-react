@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Meme Generator
+
+Just a meme generator I made to catch up with React. Mostly exploring functional components, hooks, and working with images (turned into SVGs in this case). Probably still a little buggy (the drag and drop for the meme text is still pretty bad lol).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

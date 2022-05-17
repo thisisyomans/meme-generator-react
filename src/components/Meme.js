@@ -198,7 +198,7 @@ function Meme({ imgs }) {
             key={index}
             type="text"
             name={`input-${index}`}
-            placeholder="Text"
+            placeholder="Text (can drag & drop on meme)"
             value={obj.content}
             onChange={e => updateText(index, e.target.value)}
           />
